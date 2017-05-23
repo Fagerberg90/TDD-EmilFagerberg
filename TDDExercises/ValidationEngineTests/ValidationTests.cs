@@ -1,6 +1,7 @@
 ﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,35 +12,37 @@ namespace ValidationEngineTests
     public class ValidationTests
     {
         [Test]
-        public void ValidateValidEmail()
+        public void TrueForValidAddress()
         {
             var sut = new ValidationEngine.ValidationEngine();
 
-            sut.IsValid = sut.Validate("hello@hotmail.com");
+            sut.IsValid = sut.Validate("emil@test.com");
 
             Assert.IsTrue(sut.IsValid);
         }
 
         [Test]
-        public void ValidateEmailThatIsMissingAtSign()
+        public void ValidateMissingDot()
         {
             var sut = new ValidationEngine.ValidationEngine();
 
-            sut.IsValid = sut.Validate("hellohotmail.com");
+            sut.IsValid = sut.Validate("emil@testcom");
 
             Assert.IsFalse(sut.IsValid);
         }
+
         [Test]
-        public void ValidateEmailThatIsMissingDot()
+        public void ValidateMissingAtSign()
         {
             var sut = new ValidationEngine.ValidationEngine();
 
-            sut.IsValid = sut.Validate("hello@hotmailcom");
+            sut.IsValid = sut.Validate("emiltest.com");
 
             Assert.IsFalse(sut.IsValid);
         }
+    
         [Test]
-        public void ValidateEmailThatIsNull()
+        public void ValidateIsNull()
         {
             var sut = new ValidationEngine.ValidationEngine();
 
