@@ -37,14 +37,23 @@ namespace TravelAgencyTests
         [Test]
         public void GetToursForGivenDayOnly()
         {
-        
-            
+            sut.CreateTour("Monkey Safari", new DateTime(2017, 09, 08), 40);
+            sut.CreateTour("Elephant Safari", new DateTime(2017, 07, 01), 40);
+            sut.CreateTour("Tiger Safari", new DateTime(2017, 06, 05), 40);
+            sut.CreateTour("Giraffe Safari", new DateTime(2017, 12, 20), 40);
+
+            var result = sut.GetToursFor(new DateTime(2017, 12, 20));
+
+            Assert.AreEqual(new DateTime(2017, 12, 20), result[0].DateOfTour.Date);
+            Assert.AreEqual(1, result.Count);
+
         }
 
 
         public void ToursAreScheduledByDateOnly()
         {
-            
+
+
         }
 
 
