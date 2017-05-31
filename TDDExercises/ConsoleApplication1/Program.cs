@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TravelAgency
+namespace ConsoleApplication1
 {
-   public class Program
+    class Program
     {
         static void Main(string[] args)
         {

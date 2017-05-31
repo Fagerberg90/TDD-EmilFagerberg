@@ -1,20 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TravelAgency
 {
+
     public class TourSchedule
     {
-        public List<Tour> ToursList = new List<Tour>();
+        public List<Tour> ToursList { get; set; } = new List<Tour>();
+   
+
 
         public void CreateTour(string name, DateTime dateOfTour, int numberOfSeats)
         {
-            var result = ToursList.Count(x => x.DateOfTour.Date == dateOfTour.Date);
+            var date = new DateTime(dateOfTour.Year,dateOfTour.Month,dateOfTour.Day);
 
-            if (result >= 3)
+            var result = ToursList.Where(x => x.DateOfTour.Date == dateOfTour).ToList();
+
+            if (result.Count >= 2)
             {
                 throw new TourAllocationException();
             }

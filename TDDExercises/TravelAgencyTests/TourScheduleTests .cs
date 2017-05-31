@@ -24,8 +24,8 @@ namespace TravelAgencyTests
 
         public void CanCreateNewTour()
         {
-            sut.CreateTour("Fagerbergs Tour", new DateTime(2017, 02, 15), 40);
-            var result = sut.GetToursFor(new DateTime(2017, 02, 15));
+            sut.CreateTour("Fagerbergs Tour", new DateTime(2016, 9, 8), 40);
+            List<Tour> result = sut.GetToursFor(new DateTime(2016, 9, 8));
 
 
             Assert.AreEqual(1, result.Count);
@@ -34,30 +34,51 @@ namespace TravelAgencyTests
 
         }
 
+
+        [Test]
+        public void ToursAreScheduledByDateOnly()
+        {
+            sut.CreateTour("Fagerbergs Tour", new DateTime(2016, 9, 8, 10, 15, 20), 40);
+
+            var result = sut.GetToursFor(new DateTime(2016, 9, 8, 10, 15, 20));
+
+            Assert.AreEqual(1, result.Count);
+
+      }
+
+
+
         [Test]
         public void GetToursForGivenDayOnly()
         {
-            sut.CreateTour("Monkey Safari", new DateTime(2017, 09, 08), 40);
-            sut.CreateTour("Elephant Safari", new DateTime(2017, 07, 01), 40);
-            sut.CreateTour("Tiger Safari", new DateTime(2017, 06, 05), 40);
+            sut.CreateTour("Monkey Safari", new DateTime(2017, 9, 8), 40);
+            sut.CreateTour("Elephant Safari", new DateTime(2017, 9, 8), 40);
+            sut.CreateTour("Tiger Safari", new DateTime(2017, 6, 5), 40);
             sut.CreateTour("Giraffe Safari", new DateTime(2017, 12, 20), 40);
 
-            var result = sut.GetToursFor(new DateTime(2017, 12, 20));
+            var result = sut.GetToursFor(new DateTime(2017, 9, 8));
 
-            Assert.AreEqual(new DateTime(2017, 12, 20), result[0].DateOfTour.Date);
-            Assert.AreEqual(1, result.Count);
+          
+            Assert.AreEqual(2, result.Count);
 
         }
 
+    
 
-        public void ToursAreScheduledByDateOnly()
+        [Test]
+        public void ThrowExceptionOverBooking()
         {
+            sut.CreateTour("Monkey Safari", new DateTime(2017, 9, 8), 40);
+            sut.CreateTour("Elephant Safari", new DateTime(2017, 9, 8), 40);
+         
 
+          Assert.Throws<TourAllocationException>(() =>                                            
+            {
+                sut.CreateTour("Elephant Safari", new DateTime(2017, 9, 8), 40);
+            });
+
+                  
 
         }
-
-
-
-
     }
 }
