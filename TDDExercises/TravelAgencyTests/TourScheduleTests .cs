@@ -38,9 +38,12 @@ namespace TravelAgencyTests
         [Test]
         public void ToursAreScheduledByDateOnly()
         {
-            sut.CreateTour("Fagerbergs Tour", new DateTime(2016, 9, 8, 10, 15, 20), 40);
+            sut.CreateTour("Fagerbergs Tour", new DateTime(2016, 9, 8, 10, 15, 2), 40);
 
-            var result = sut.GetToursFor(new DateTime(2016, 9, 8, 10, 15, 20));
+            //var result = sut.GetToursFor(new DateTime(2016, 9, 8, 10, 15, 2)); This work.
+
+            var result = sut.GetToursFor(new DateTime(
+                2016, 9, 8));
 
             Assert.AreEqual(1, result.Count);
 

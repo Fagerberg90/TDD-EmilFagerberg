@@ -17,7 +17,7 @@ namespace TravelAgency
 
         public void CreateTour(string name, DateTime dateOfTour, int numberOfSeats)
         {
-            var date = new DateTime(dateOfTour.Year,dateOfTour.Month,dateOfTour.Day);
+            var date = new DateTime(dateOfTour.Year, dateOfTour.Month, dateOfTour.Day);
 
             var result = ToursList.Where(x => x.DateOfTour.Date == dateOfTour).ToList();
 
@@ -31,12 +31,12 @@ namespace TravelAgency
             }
         }
 
-        public List<Tour> GetToursFor(DateTime dateTime)
+   
+
+        public List<Tour> GetToursFor(DateTime date)
         {
-            var toursDate = ToursList.Where(x => x.DateOfTour == dateTime).ToList();
-
+            var toursDate = ToursList.Where(x => x.DateOfTour.Date == date.Date).ToList();
             return toursDate;
-
         }
     }
 }
