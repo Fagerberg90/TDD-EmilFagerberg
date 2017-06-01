@@ -21,11 +21,9 @@ namespace StringCalculator.Tests
         [TestCase(6, "//***\n1***2***3")]
         [TestCase(6, "//*%\n1*2%3")]
         [TestCase(6, "//*%\n1*2%%%3")]
-
-
-
         public void AddNbrReturnSum(int expected, string number)
         {
+
             Assert.AreEqual(expected, StringCalculator.Add(number));
 
         }
@@ -39,14 +37,6 @@ namespace StringCalculator.Tests
 
             Assert.AreEqual("negatives not allowed -2 -3", exception.Message);
 
-
-
         }
-
-
-
-
-
-
     }
 }

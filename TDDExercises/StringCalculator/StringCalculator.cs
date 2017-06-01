@@ -12,7 +12,6 @@ namespace StringCalculator
         {
             var delimiter = ',';
 
-
             if (string.IsNullOrEmpty(numbers))
             {
                 return 0;
@@ -24,7 +23,7 @@ namespace StringCalculator
 
             var numberArray = numberStringArray.Where(x => !string.IsNullOrEmpty(x)).Select(int.Parse).ToArray();
 
-          ValidateNonNegatives(numberArray);
+            ValidateNonNegatives(numberArray);
 
             return numberArray.Where(x => x <= 1000).Sum(x => x);
 
@@ -32,14 +31,14 @@ namespace StringCalculator
 
         private static void ValidateNonNegatives(int[] numberArray)
         {
+
             if (numberArray.Any(x => (x) < 0))
                 throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => (x) < 0))}");
-        }
 
+        }
 
         private static void GetNumberArrayDefaultDelimeter(ref string[] numberArray, char delimiter)
         {
-
             if (!numberArray[0].StartsWith("//"))
 
                 return;
@@ -48,10 +47,10 @@ namespace StringCalculator
 
             foreach (var customDelimeter in customDelimeters)
             {
-            numberArray[1] =numberArray[1].Replace(customDelimeter,delimiter);
+
+                numberArray[1] = numberArray[1].Replace(customDelimeter, delimiter);
 
             }
-
 
             numberArray = numberArray[1].Split(delimiter);
         }

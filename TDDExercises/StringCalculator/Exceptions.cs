@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace StringCalculator
 {
-   public class Exceptions
+   public class AddNeagativeNumberThrowException: Exception
     {
-  
+
     }
 }
