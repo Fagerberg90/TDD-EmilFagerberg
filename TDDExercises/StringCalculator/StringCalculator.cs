@@ -10,14 +10,17 @@ namespace StringCalculator
     {
         public static int Add(string numbers)
         {
+            var delimiter = ',';
+
+
             if (string.IsNullOrEmpty(numbers))
             {
                 return 0;
             }
 
-            var numberStringArray = numbers.Replace('\n', ',').Split(',');
+            var numberStringArray = numbers.Replace('\n', delimiter).Split(delimiter);
 
-            GetNumberArrayDefaultDelimeter(ref numberStringArray);
+            GetNumberArrayDefaultDelimeter(ref numberStringArray, delimiter);
 
             var numberArray = numberStringArray.Select(int.Parse).ToArray();
 
@@ -34,16 +37,16 @@ namespace StringCalculator
         }
 
 
-        private static void GetNumberArrayDefaultDelimeter(ref string[] numberArray)
+        private static void GetNumberArrayDefaultDelimeter(ref string[] numberArray, char delimiter)
         {
 
             if (!numberArray[0].StartsWith("//"))
 
                 return;
 
-            var delimeter = Convert.ToChar(numberArray[0].Remove(0, 2));
-
-            numberArray = numberArray[1].Split(delimeter);
+            var customDelimeter = numberArray[0].Remove(0, 2);
+            numberArray[1] =numberArray[1].Replace(customDelimeter,delimiter.ToString());
+            numberArray = numberArray[1].Split(delimiter);
         }
     }
 }
