@@ -16,6 +16,8 @@ namespace StringCalculator.Tests
         [TestCase(3, "1,2")]
         [TestCase(6, "1,2,3")]
         [TestCase(6, "1\n2,3")]
+        [TestCase(3, "//;\n1;2")]
+
 
         public void AddNbrReturnSum(int expected, string number)
         {

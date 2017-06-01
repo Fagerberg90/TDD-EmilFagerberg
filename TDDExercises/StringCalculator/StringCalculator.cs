@@ -15,10 +15,27 @@ namespace StringCalculator
                 return 0;
             }
 
-            var numberArray = numbers.Replace('\n',',').Split(',');
+            var numberArray = numbers.Replace('\n', ',').Split(',');
+
+            GetNumberArrayDefaultDelimeter(ref numberArray);
 
             return numberArray.Sum(x => int.Parse(x));
 
+
+        }
+
+
+        private static void GetNumberArrayDefaultDelimeter(ref string[] numberArray)
+        {
+
+            if (!numberArray[0].StartsWith("//"))
+
+                return;
+
+            var delimeter = Convert.ToChar(numberArray[0].Remove(0, 2));
+
+            numberArray = numberArray[1].Split(delimeter);
         }
     }
 }
+
