@@ -20,9 +20,10 @@ namespace StringCalculator.Tests
         [TestCase(2, "//;\n2;1001")]
         [TestCase(6, "//***\n1***2***3")]
         [TestCase(6, "//*%\n1*2%3")]
+        [TestCase(6, "//*%\n1*2%%%3")]
 
-       
-        
+
+
         public void AddNbrReturnSum(int expected, string number)
         {
             Assert.AreEqual(expected, StringCalculator.Add(number));
