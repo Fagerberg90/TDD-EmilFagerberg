@@ -66,7 +66,6 @@ namespace TravelAgencyTests
 
         }
 
-    
 
         [Test]
         public void ThrowExceptionOverBooking()
