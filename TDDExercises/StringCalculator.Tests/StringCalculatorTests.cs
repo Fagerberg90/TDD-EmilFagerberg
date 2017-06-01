@@ -17,11 +17,22 @@ namespace StringCalculator.Tests
         [TestCase(6, "1,2,3")]
         [TestCase(6, "1\n2,3")]
         [TestCase(3, "//;\n1;2")]
-
-
         public void AddNbrReturnSum(int expected, string number)
         {
-            Assert.AreEqual(expected,StringCalculator.Add(number));
+            Assert.AreEqual(expected, StringCalculator.Add(number));
+
+        }
+
+        [Test]
+        public void AddNeagativeNumberThrowException()
+        {
+            var number = "1\n-2,-3";
+
+            var exception = Assert.Throws<Exception>(() => StringCalculator.Add(number));
+
+            Assert.AreEqual("negatives not allowed -2 -3", exception.Message);
+
+
 
         }
 

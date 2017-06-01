@@ -15,13 +15,22 @@ namespace StringCalculator
                 return 0;
             }
 
-            var numberArray = numbers.Replace('\n', ',').Split(',');
+            var numberStringArray = numbers.Replace('\n', ',').Split(',');
 
-            GetNumberArrayDefaultDelimeter(ref numberArray);
+            GetNumberArrayDefaultDelimeter(ref numberStringArray);
 
-            return numberArray.Sum(x => int.Parse(x));
+            var numberArray = numberStringArray.Select(int.Parse).ToArray();
 
+          ValidateNonNegatives(numberArray);
 
+            return numberArray.Sum(x => (x));
+
+        }
+
+        private static void ValidateNonNegatives(int[] numberArray)
+        {
+            if (numberArray.Any(x => (x) < 0))
+                throw new Exception($"negatives not allowed {string.Join(" ", numberArray.Where(x => (x) < 0))}");
         }
 
 
