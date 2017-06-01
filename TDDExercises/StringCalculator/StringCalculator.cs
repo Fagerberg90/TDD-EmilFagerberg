@@ -15,7 +15,7 @@ namespace StringCalculator
                 return 0;
             }
 
-            var numberArray = numbers.Split(',');
+            var numberArray = numbers.Replace('\n',',').Split(',');
 
             return numberArray.Sum(x => int.Parse(x));
 
