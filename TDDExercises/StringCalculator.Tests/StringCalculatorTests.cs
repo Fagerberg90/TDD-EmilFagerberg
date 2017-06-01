@@ -19,6 +19,9 @@ namespace StringCalculator.Tests
         [TestCase(3, "//;\n1;2")]
         [TestCase(2, "//;\n2;1001")]
         [TestCase(6, "//***\n1***2***3")]
+        [TestCase(6, "//*%\n1*2%3")]
+
+       
         
         public void AddNbrReturnSum(int expected, string number)
         {

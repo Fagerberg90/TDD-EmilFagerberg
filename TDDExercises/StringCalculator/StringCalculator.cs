@@ -22,7 +22,7 @@ namespace StringCalculator
 
             GetNumberArrayDefaultDelimeter(ref numberStringArray, delimiter);
 
-            var numberArray = numberStringArray.Select(int.Parse).ToArray();
+            var numberArray = numberStringArray.Where(x => !string.IsNullOrEmpty(x)).Select(int.Parse).ToArray();
 
           ValidateNonNegatives(numberArray);
 
@@ -44,8 +44,15 @@ namespace StringCalculator
 
                 return;
 
-            var customDelimeter = numberArray[0].Remove(0, 2);
-            numberArray[1] =numberArray[1].Replace(customDelimeter,delimiter.ToString());
+            var customDelimeters = numberArray[0].Remove(0, 2).Distinct();
+
+            foreach (var customDelimeter in customDelimeters)
+            {
+            numberArray[1] =numberArray[1].Replace(customDelimeter,delimiter);
+
+            }
+
+
             numberArray = numberArray[1].Split(delimiter);
         }
     }
