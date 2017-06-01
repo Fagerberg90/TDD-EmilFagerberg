@@ -23,7 +23,7 @@ namespace StringCalculator
 
           ValidateNonNegatives(numberArray);
 
-            return numberArray.Sum(x => (x));
+            return numberArray.Where(x => x <= 1000).Sum(x => x);
 
         }
 
