@@ -11,7 +11,7 @@ namespace TravelAgency
 
     public class TourSchedule
     {
-        public List<Tour> ToursList { get; set; } = new List<Tour>();
+        private List<Tour> ToursList { get; set; } = new List<Tour>();
    
 
 

@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TravelAgency;
+using TravelAgencyEx4;
 
-namespace TravelAgencyTests
+namespace TravelAgencyEx4.Tests
 {
     [TestFixture]
 
