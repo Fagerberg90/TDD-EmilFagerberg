@@ -38,6 +38,21 @@ namespace NsubstituteExtraExercise3.Tests
             Assert.AreEqual(result.Number, "1");
         }
 
+        [Test]
+        public void CanNotCreateDuplicateAccounts()
+        {
+            sut.CreateAccount(acc);
+            Assert.Throws<DuplicateAccount>(() =>
+            {
+                sut.CreateAccount(acc);
+            });
+        }
+
+
+
+
+
+
 
     }
 }
