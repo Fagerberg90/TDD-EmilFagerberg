@@ -8,10 +8,10 @@ namespace TravelAgencyEx4
 {
     public class Booking
     {
-        public Passenger passengers { get; set; }
-        public string tourName { get; set; }
+        public Passenger Passengers { get; set; }
+        public string TourName { get; set; }
         public int NumberOfSeats { get; set; }
-        public DateTime dateOfTour { get; set; }
+        public DateTime DateOfTour { get; set; }
 
     }
 }

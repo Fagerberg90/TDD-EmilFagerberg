@@ -13,6 +13,5 @@ namespace TravelAgencyEx4
         List<Tour> GetToursFor(DateTime tourTime);
         void CreateTour(string tourName, DateTime dateTime, int numberOfSeats);
 
-
     }
 }

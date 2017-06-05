@@ -11,14 +11,12 @@ namespace TravelAgencyEx4.Tests
 {
     public class TourScheduleStub : ITourSchedule
     {
-
         public List<Tour> ToursList { get; set; }
         private List<DateTime> dateList;
 
-
         public TourScheduleStub()
         {
-                
+
         }
 
         public List<Tour> GetToursFor(DateTime time)
@@ -37,7 +35,7 @@ namespace TravelAgencyEx4.Tests
 
         public void CreateTour(string name, DateTime dateOfTour, int numberOfSeats)
         {
-          
+
 
         }
     }

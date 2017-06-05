@@ -27,13 +27,10 @@ namespace TravelAgencyEx4.Tests
             sut.CreateTour("Fagerbergs Tour", new DateTime(2016, 9, 8), 40);
             List<Tour> result = sut.GetToursFor(new DateTime(2016, 9, 8));
 
-
             Assert.AreEqual(1, result.Count);
             Assert.AreEqual("Fagerbergs Tour", result[0].Name);
             Assert.AreEqual(40, result[0].NumberOfSeats);
-
         }
-
 
         [Test]
         public void ToursAreScheduledByDateOnly()
@@ -44,10 +41,7 @@ namespace TravelAgencyEx4.Tests
                 2016, 9, 8));
 
             Assert.AreEqual(1, result.Count);
-
-      }
-
-
+        }
 
         [Test]
         public void GetToursForGivenDayOnly()
@@ -59,26 +53,19 @@ namespace TravelAgencyEx4.Tests
 
             var result = sut.GetToursFor(new DateTime(2017, 9, 8));
 
-          
             Assert.AreEqual(2, result.Count);
-
         }
-
 
         [Test]
         public void ThrowExceptionOverBooking()
         {
             sut.CreateTour("Monkey Safari", new DateTime(2017, 9, 8), 40);
             sut.CreateTour("Elephant Safari", new DateTime(2017, 9, 8), 40);
-         
 
-          Assert.Throws<TourAllocationException>(() =>                                            
-            {
-                sut.CreateTour("Elephant Safari", new DateTime(2017, 9, 8), 40);
-            });
-
-                  
-
+            Assert.Throws<TourAllocationException>(() =>
+              {
+                  sut.CreateTour("Elephant Safari", new DateTime(2017, 9, 8), 40);
+              });
         }
     }
 }

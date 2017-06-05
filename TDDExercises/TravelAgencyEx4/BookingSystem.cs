@@ -9,8 +9,7 @@ namespace TravelAgencyEx4
 {
     public class BookingSystem
     {
-
-        private List<Booking> bookingList { get; set; } = new List<Booking>();
+     private List<Booking> BookingList { get; set; } = new List<Booking>();
 
         private ITourSchedule TourSchedule;
 
@@ -34,27 +33,22 @@ namespace TravelAgencyEx4
                 throw new NoSeatsLeftOnBookingTourException();
             }
 
-
             var booking = new Booking();
 
-            booking.dateOfTour = dateOfTour;
-            booking.passengers = stubPassenger;
-            booking.tourName = name;
+            booking.DateOfTour = dateOfTour;
+            booking.Passengers = stubPassenger;
+            booking.TourName = name;
             booking.NumberOfSeats = numberOfSeats;
-            bookingList.Add(booking);
-
-
-        }
+            BookingList.Add(booking);
+       }
 
         public List<Booking> GetBookingsFor(Passenger stubPassenger)
         {
 
-            return bookingList.Where(x => x.passengers.Fname == stubPassenger.Fname &&
-                                          x.passengers.Lname == stubPassenger.Lname).ToList();
+            return BookingList.Where(x => x.Passengers.Fname == stubPassenger.Fname &&
+                                          x.Passengers.Lname == stubPassenger.Lname).ToList();
 
         }
-
-
 
     }
 }

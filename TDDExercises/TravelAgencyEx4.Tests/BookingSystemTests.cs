@@ -52,9 +52,9 @@ namespace TravelAgencyEx4.Tests
             var model = bookingList[0];
 
             Assert.AreEqual(1,bookingList.Count);
-            Assert.AreEqual("CrazyLoco",model.tourName);
-            Assert.AreEqual(PassengerStub,model.passengers);
-            Assert.AreEqual(TourScheduleStub.ToursList[0].Name,model.tourName);
+            Assert.AreEqual("CrazyLoco",model.TourName);
+            Assert.AreEqual(PassengerStub,model.Passengers);
+            Assert.AreEqual(TourScheduleStub.ToursList[0].Name,model.TourName);
         }
 
         [Test]
@@ -82,7 +82,6 @@ namespace TravelAgencyEx4.Tests
 
             Assert.Throws<TourDoesentExistOnBookedPersoException>(() => sut.CreateBooking("CrazyLoco",
                 new DateTime(2017, 06, 10), 40, PassengerStub));
-
 
         }
     }
