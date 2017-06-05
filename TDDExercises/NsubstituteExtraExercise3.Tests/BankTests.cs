@@ -7,9 +7,6 @@ using NUnit.Framework;
 using NSubstitute;
 using NsubstituteExtraExercise3;
 
-
-
-
 namespace NsubstituteExtraExercise3.Tests
 {
     [TestFixture]
@@ -22,7 +19,7 @@ namespace NsubstituteExtraExercise3.Tests
         [SetUp]
         public void SetUp()
         {
-            
+
             iAuditLogger = Substitute.For<IAuditLogger>();
             sut = new Bank(iAuditLogger);
             acc = new Account { Name = "Emil", Balance = 0, Number = "1" };
@@ -60,33 +57,31 @@ namespace NsubstituteExtraExercise3.Tests
         [Test]
         public void WhenCreatingAnValidAccount_OneMessageAreWrittenToTheAuditLog()
         {
-
             sut.CreateAccount(acc);
-          
 
             iAuditLogger.Received(1).AddMessage(Arg.Any<string>());
-
         }
 
         [Test]
         public void WhenCreatingAnInvalidAccount_TwoMessagesAreWrittenToTheAuditLog()
         {
-
-            Account invalidAccount = new Account() {Balance = 100, Name = "Goran", Number = "tre"};
+            Account invalidAccount = new Account() { Balance = 100, Name = "Goran", Number = "tre" };
 
             Assert.Throws<InvalidAccount>(() => sut.CreateAccount(invalidAccount));
 
             iAuditLogger.Received(2).AddMessage(Arg.Any<string>());
-
-
         }
 
-        //[Test]
-        //public void WhenCreatingAnInvalidAccount_AWarn12AndErro45MessageIsWrittenToAuditLog()
-        //{
+        [Test]
+        public void WhenCreatingAnInvalidAccount_AWarn12AndErro45MessageIsWrittenToAuditLog()
+        {
+            Account invalidAccount = new Account() { Balance = 100, Name = "Goran", Number = "tre" };
 
+            Assert.Throws<InvalidAccount>(() => sut.CreateAccount(invalidAccount));
 
-        //}
+            iAuditLogger.Received().AddMessage(Arg.Is<string>(m => m.Contains("Warn12")|| m.Contains("Error45")));
+          
+        }
 
         //[Test]
         //public void VerifyThat_GetAuditLog_GetsTheLogFromTheAuditLogger()
@@ -94,8 +89,6 @@ namespace NsubstituteExtraExercise3.Tests
 
 
         //}
-
-
 
 
 
