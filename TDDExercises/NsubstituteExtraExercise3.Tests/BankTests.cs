@@ -62,37 +62,24 @@ namespace NsubstituteExtraExercise3.Tests
         {
 
             sut.CreateAccount(acc);
-            sut.GetAuditLog();
+          
 
             iAuditLogger.Received(1).AddMessage(Arg.Any<string>());
 
         }
 
-      
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        //[Test]
-        //public void WhenCreatingAnInvalidAccount_TwoMessagesAreWrittenToTheAuditLog()
-        //{
+        [Test]
+        public void WhenCreatingAnInvalidAccount_TwoMessagesAreWrittenToTheAuditLog()
+        {
+
+            Account invalidAccount = new Account() {Balance = 100, Name = "Goran", Number = "tre"};
+
+            Assert.Throws<InvalidAccount>(() => sut.CreateAccount(invalidAccount));
+
+            iAuditLogger.Received(2).AddMessage(Arg.Any<string>());
 
 
-        //}
+        }
 
         //[Test]
         //public void WhenCreatingAnInvalidAccount_AWarn12AndErro45MessageIsWrittenToAuditLog()
