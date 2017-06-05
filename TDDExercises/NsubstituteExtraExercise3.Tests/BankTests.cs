@@ -48,6 +48,14 @@ namespace NsubstituteExtraExercise3.Tests
             });
         }
 
+        [Test]
+        public void WhenCreatingAnAccount_AMessageIsWrittenToTheAuditLog()
+        {
+                          sut.CreateAccount(acc);
+            iAuditLogger.Received().AddMessage(Arg.Is<string>(a=> a.Contains(acc.Name)&& a.Contains(acc.Number)));
+        }
+
+
 
 
 
