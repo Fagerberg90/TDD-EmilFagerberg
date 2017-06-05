@@ -25,6 +25,7 @@ namespace NsubstituteExtraExercise3.Tests
             acc = new Account { Name = "Emil", Balance = 0, Number = "1" };
         }
 
+
         [Test]
         public void CanCreateBankAccount()
         {
@@ -54,6 +55,7 @@ namespace NsubstituteExtraExercise3.Tests
             iAuditLogger.Received().AddMessage(Arg.Is<string>(a => a.Contains(acc.Name) && a.Contains(acc.Number)));
         }
 
+
         [Test]
         public void WhenCreatingAnValidAccount_OneMessageAreWrittenToTheAuditLog()
         {
@@ -61,6 +63,7 @@ namespace NsubstituteExtraExercise3.Tests
 
             iAuditLogger.Received(1).AddMessage(Arg.Any<string>());
         }
+
 
         [Test]
         public void WhenCreatingAnInvalidAccount_TwoMessagesAreWrittenToTheAuditLog()
@@ -72,6 +75,7 @@ namespace NsubstituteExtraExercise3.Tests
             iAuditLogger.Received(2).AddMessage(Arg.Any<string>());
         }
 
+
         [Test]
         public void WhenCreatingAnInvalidAccount_AWarn12AndErro45MessageIsWrittenToAuditLog()
         {
@@ -79,22 +83,18 @@ namespace NsubstituteExtraExercise3.Tests
 
             Assert.Throws<InvalidAccount>(() => sut.CreateAccount(invalidAccount));
 
-            iAuditLogger.Received().AddMessage(Arg.Is<string>(m => m.Contains("Warn12:")|| m.Contains("Error45:")));
-          
+            iAuditLogger.Received().AddMessage(Arg.Is<string>(m => m.Contains("Warn12:") || m.Contains("Error45:")));
         }
+
 
         [Test]
         public void VerifyThat_GetAuditLog_GetsTheLogFromTheAuditLogger()
         {
-            iAuditLogger.GetLog().Returns(new List<string>() {"a", "b", "c"});
+            iAuditLogger.GetLog().Returns(new List<string>() { "a", "b", "c" });
 
             var result = sut.GetAuditLog();
 
-            Assert.AreEqual(3,result.Count);
-
+            Assert.AreEqual(3, result.Count);
         }
-
-
-
     }
 }
