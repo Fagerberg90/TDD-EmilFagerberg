@@ -79,16 +79,20 @@ namespace NsubstituteExtraExercise3.Tests
 
             Assert.Throws<InvalidAccount>(() => sut.CreateAccount(invalidAccount));
 
-            iAuditLogger.Received().AddMessage(Arg.Is<string>(m => m.Contains("Warn12")|| m.Contains("Error45")));
+            iAuditLogger.Received().AddMessage(Arg.Is<string>(m => m.Contains("Warn12:")|| m.Contains("Error45:")));
           
         }
 
-        //[Test]
-        //public void VerifyThat_GetAuditLog_GetsTheLogFromTheAuditLogger()
-        //{
+        [Test]
+        public void VerifyThat_GetAuditLog_GetsTheLogFromTheAuditLogger()
+        {
+            iAuditLogger.GetLog().Returns(new List<string>() {"a", "b", "c"});
 
+            var result = sut.GetAuditLog();
 
-        //}
+            Assert.AreEqual(3,result.Count);
+
+        }
 
 
 
